@@ -2,7 +2,7 @@ module vping
 
 import os
 
-
+// ping () -> runs the ping process and returns an <Answer> Object (Struct)
 pub fn ping(pingconf Conf) Answer
 {
 	result := prepare(pingconf).join(" ")
@@ -11,6 +11,7 @@ pub fn ping(pingconf Conf) Answer
 	return answer(executed, pingconf, result)
 }
 
+// answer () -> helper function to generate the <Answer> Object
 fn answer(executed os.Result, pingconf Conf, cmd string) Answer
 {
 	return Answer{
@@ -22,6 +23,7 @@ fn answer(executed os.Result, pingconf Conf, cmd string) Answer
 	}
 }
 
+// prepare () -> Generate the command as an array | example: ["ping", "host.ip", "-c", "1"]
 pub fn prepare(pingconf Conf) []string
 {
 	mut bmap := map[string]string{}
