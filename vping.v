@@ -12,7 +12,7 @@ pub fn ping(pingconf Conf) Answer
 }
 
 // answer () -> helper function to generate the <Answer> Object
-fn answer(executed os.Result, pingconf Conf, cmd string) Answer
+pub fn answer(executed os.Result, pingconf Conf, cmd string) Answer
 {
 	return Answer{
 		conf: pingconf
@@ -24,7 +24,7 @@ fn answer(executed os.Result, pingconf Conf, cmd string) Answer
 }
 
 // prepare () -> Generate the command as an array | example: ["ping", "host.ip", "-c", "1"]
-pub fn prepare(pingconf Conf) []string
+fn prepare(pingconf Conf) []string
 {
 	mut bmap := map[string]string{}
 	$if windows {
