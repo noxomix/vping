@@ -12,7 +12,7 @@ pub fn ping(pingconf Conf) Answer
 }
 
 // answer () -> helper function to generate the <Answer> Object
-fn answer(executed os.Result, pingconf Conf, cmd string) Answer
+pub fn answer(executed os.Result, pingconf Conf, cmd string) Answer
 {
 	return Answer{
 		conf: pingconf
