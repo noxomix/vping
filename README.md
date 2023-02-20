@@ -107,7 +107,7 @@ fn main() {
 }
 ```
 
-Use Struct as Parameter example:
+Use Conf-Struct as Parameter:
 ```vlang
 module main
 
