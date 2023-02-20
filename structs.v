@@ -15,7 +15,7 @@ pub struct Conf {
 }
 
 pub struct Answer {
-	mut:
+	pub mut:
 		conf Conf //given Conf
 		command string //given command
 		status int //response status
