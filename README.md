@@ -25,14 +25,14 @@ fn main() {
 
 #### Arguments:
 
-| Argument | Description | Importance | Example |
-|----------|-------------|------------|---------|
+| Argument | Description | Importance              | Example |
+|----------|-------------|-------------------------|---------|
 | `ip`       | The IP-Adress/Hostname/Domain of the Host                                                              | `required`              | `ping(ip: "google.com")`                           |
 | `count`    | Number of Packets to send                                                                              | `(optional)`            | `ping(ip: "google.de", count: 4)`                  |
 | `timeout`  | On Windows this is the time per Packet in MS - on Linux its for the whole Ping Process and in Seconds. | `(optional)`            | `ping(ip: "google.de", timeout: 10)`               |
 | `size`     | Size per Packet to send in Byte                                                                        | `(optional)`            | `ping(ip: "google.de", size: 16)`                  |
 | `force`    | Force to use IPv4 / IPv6                                                                               | `(optional)`            | `ping(ip: "google.de", force: 4) //forces to IPv4` |
 | `ttl`      | Given TTL                                                                                              | `(optional)`            | `ping(ip: "google.de", ttl: 15)`                   |
-| `iface`    | Network Interface Name (Linux-Only)                                                                    | `(optional|Linux-Only)` | `ping(ip: "google.de", iface: "eth0"`              |
-| `interval` | Interval of packets in Seconds (Linux-Only)                                                            | `(optional|Linux-Only)` | `ping(ip: "google.de", interval: 1)`               |
+| `iface`    | Network Interface Name (Linux-Only)                                                                    | `(optional/Linux-Only)` | `ping(ip: "google.de", iface: "eth0"`              |
+| `interval` | Interval of packets in Seconds (Linux-Only)                                                            | `(optional/Linux-Only)` | `ping(ip: "google.de", interval: 1)`               |
 
