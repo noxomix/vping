@@ -47,4 +47,82 @@ Struct/Object.
 ### `(Answer) no_newline_raw() Answer`
 (Just for visualization-purpose).
 This function is callable on Answer-Object, and returns a new Answer where `<Answer>.raw` all `\n` replaced by ` `. 
+__Example:__
+```vlang
+module main
+
+import hall_of_code.vping
+
+fn main() {
+    answ := vping.ping(ip: "google.com", timeout: 5, count: 2).no_newline_raw()
+    println(answ.raw)
+}
+```
+
+### `Answer{}`-Struct:
+```vlang
+pub struct Answer {
+    mut:
+        conf Conf      //given Conf (line {ip: "google.de", count: 3})
+        command string //the generated ping-command
+        status int     //status code (exit_status) -> 0 = everything ok, 1 = packetloss, 2 = ping-error
+        raw string     //full terminal-response as string
+        parsed Parsed  //parsed response, here it gets interesting ;)
+}
+```
+### `Parsed{}`-Struct:
+```vlang
+pub struct Parsed {
+	mut:
+		time_tt int          //total time the answer took
+		pk_send int          //number of packets send
+		pk_recv int          //number of packets received
+		pk_loss_percent int  //package loss in percent (%)
+		mam_line string      //min/max/avg - line
+		avg f32              //avg  (in ms)
+		min f32              //min  (in ms)
+		max f32              //max  (in ms)
+		mdev f32             //mdev (in ms)
+} 
+```
+
+## Further Examples:
+
+Force to use IPv6 Ping:
+```vlang
+module main
+
+import hall_of_code.vping
+
+fn main() {
+    answ := vping.ping(ip: "ipv6.google.com", force: 6, timeout: 10)
+    if answ.status == 0 {
+		println(answ.parsed.avg.str()) //print the average time it took
+    } else if answ.status == 1 {
+		println("Packet Loss: " + answ.parsed.pk_loss.str() + "%") //print the Packet Loss in %
+    } else {
+		println("Error: Status-Code = " + answ.status.str()) //print the Status Code
+        println(answ.raw) //print out ping response from terminal as string
+    }
+}
+```
+
+Use Struct as Parameter:
+```vlang
+module main
+
+import hall_of_code.vping
+
+fn main() {
+    params := Conf{
+        ip: "google.de"
+        count: 6
+        timeout: 10
+        interval: 2
+    }
+    
+    println(vping.ping(params))
+}
+```
+
 
