@@ -107,7 +107,7 @@ fn main() {
 }
 ```
 
-Use Struct as Parameter:
+Use Struct as Parameter example:
 ```vlang
 module main
 
