@@ -1,1 +1,1 @@
-# vping for Vlang
+# `vping` for Vlang
