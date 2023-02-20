@@ -3,6 +3,12 @@ module main
 import hall_of_code.vping
 
 fn main() {
-answ := vping.ping(ip: "google.com", timeout: 5, count: 2).no_newline_raw()
-println(answ.raw)
+	params := vping.Conf{
+		ip: "google.de"
+		count: 6
+		timeout: 10
+		interval: 2
+	}
+
+	println(vping.ping(params))
 }
