@@ -2,7 +2,7 @@ module vping
 
 [params]
 pub struct Conf {
-	mut:
+	pub mut:
 		ip string
 		count int     = 4
 		timeout int   = -1
@@ -33,7 +33,7 @@ pub fn (answer Answer) no_newline_raw() Answer
 }
 
 pub struct Parsed {
-	mut:
+	pub mut:
 		time_tt int //in ms
 		pk_send int //number of packages send
 		pk_recv int //number of packages received
