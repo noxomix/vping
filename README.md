@@ -2,13 +2,22 @@
 This is a Ping Library for the Vlang Programming-Language (Link: [vlang/v](https://github.com/vlang/v)).
 `vping`  uses the "native" `ping` command of Linux and Windows (!Currently <ins>not</ins> well tested on Windows, and not compatible with MacOS. Tested on Ubuntu 20 based system).
 
-#### (!) Project in early stage of Development - use it with care. Best Regards ~Theo.
+#### (!) Project in early stage of Development - use it with care. Best Regards _Theo.
 
 ## Quick Documentation
 ### Install it:
-To install I'll recommend using `vpm`. Just use `v install hall_of_code.vping` to install it.
-The dependencies are `(Builtin) os` and `pcre`-regex.
-After installation, you can simply use it by `import hall_of_code.vping`.
+To install I'll recommend to use __vpm__.  
+Which is just this one command: 
+```shell
+v install hall_of_code.vping
+```
+to install it including all dependencies.
+The dependencies are `os` (Builtin) and `pcre`.  
+__After installation__, you can simply use it by:
+```vlang
+import hall_of_code.vping
+```
+But now to the more 'nerdy' part - the Documentation.
 ### Basic Usage:
 
 ```vlang
@@ -37,16 +46,19 @@ fn main() {
 | `interval` | Interval of packets in Seconds (Linux-Only)                                                            | `(optional/Linux-Only)` | `ping(ip: "google.de", interval: 1)`               |
 
 ## Functions:
-Only public functions are documented here :) `//everything else -> todo for later`
+Only public functions are documented here :) __//everything else -> todo for later__
 ### `ping(Conf) Answer`
-This function takes a Conf-Struct as Parameter - since this is comparable with "named arguments", you also can
-do `ping(ip: "google.de", count: 2, timeout: 5)`.
+This function takes a __Conf__-Struct as Parameter - since this is comparable with "named arguments", you also can
+do:
+```vlang
+ping(ip: "google.de", count: 2, timeout: 5)
+```
 The Command takes some time - (while running the Ping Process by os.execute) and then - returns an `Answer{}`
 Struct/Object.
 
 ### `(Answer) no_newline_raw() Answer`
-(Just for visualization-purpose).
-This function is callable on Answer-Object, and returns a new Answer where `<Answer>.raw` all `\n` replaced by ` `. 
+__(Just for visualization-purpose).__
+This function is callable on Answer-Object, and returns a new Answer where `<Answer>.raw` all `"\n"` replaced by `" "`.  
 __Example:__
 ```vlang
 module main
@@ -74,11 +86,11 @@ pub struct Answer {
 ```vlang
 pub struct Parsed {
 	mut:
-		time_tt int          //total time the answer took
+		time_tt int          //total time the answer took (in ms)
 		pk_send int          //number of packets send
 		pk_recv int          //number of packets received
 		pk_loss_percent int  //package loss in percent (%)
-		mam_line string      //min/max/avg - line
+		mam_line string      //min/avg/max - line
 		avg f32              //avg  (in ms)
 		min f32              //min  (in ms)
 		max f32              //max  (in ms)
@@ -124,5 +136,10 @@ fn main() {
 	println(vping.ping(params))
 }
 ```
+
+## Good to know:
+When some values of __Conf__ or __Parsed__ are `== -1` there would be a parsing/general problem.  
+Since just few values __shouldn't__ end up as an Error or Failure, it's implemented like that. So when using the 
+__Answer__ make sure to proof if the value is `>= 0` to "validate" it. 
 
 
