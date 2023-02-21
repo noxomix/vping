@@ -15,7 +15,7 @@ fn parse(output string) Parsed
 	if p_mam_f.len > 1
 	{
 		p_mam_s := p_mam_f[1].split("/")
-		if p_mam_s.len > 3
+		if p_mam_s.len > 3 && p_mam_s.len < 5
 		{
 			parsed.min = p_mam_s[0].f32() //min
 			parsed.avg = p_mam_s[1].f32() //avg
@@ -23,6 +23,10 @@ fn parse(output string) Parsed
 			p_mam_t := p_mam_s[3].split(" ms")
 			parsed.mdev = p_mam_t[0].f32() //mdev in ms
 		}
+	}
+	if parsed == Parsed{} //if nothing changed, nothing parsed = return Parsing Error
+	{
+		parsed.is_err = 1
 	}
 	return parsed
 }

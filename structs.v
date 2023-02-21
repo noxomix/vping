@@ -18,7 +18,7 @@ pub struct Answer {
 	pub mut:
 		conf Conf //given Conf
 		command string //given command
-		status int //response status
+		status int = -1 //response status
 		raw string //full response of ping command
 		parsed Parsed //partly parsed response
 }
@@ -34,13 +34,15 @@ pub fn (answer Answer) no_newline_raw() Answer
 
 pub struct Parsed {
 	pub mut:
-		time_tt int //in ms
-		pk_send int //number of packages send
-		pk_recv int //number of packages received
-		pk_loss_percent int //package loss in percent%
-		mam_line string //min/max/avg full line
-		avg f32 //ms
-		min f32 //ms
-		max f32 //ms
-		mdev f32 //ms
+		time_tt int = -1 //in ms
+		pk_send int = -1 //number of packages send
+		pk_recv int = -1 //number of packages received
+		pk_loss_percent int = -1 //package loss in percent%
+		mam_line string = "-1" //min/max/avg full line
+		avg f32 =  -1  //ms
+		min f32 =  -1  //ms
+		max f32 =  -1  //ms
+		mdev f32 = -1  //ms
+		//vping specific error (NOT comparable with Status-code (exit code) of ping command):
+		is_err int  //if parse() error [vping specific] 1 = yes, 0 = no error detected
 }
