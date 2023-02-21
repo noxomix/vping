@@ -85,18 +85,21 @@ pub struct Answer {
 ### `Parsed{}`-Struct:
 ```vlang
 pub struct Parsed {
-	mut:
-		time_tt int          //total time the answer took (in ms)
-		pk_send int          //number of packets send
-		pk_recv int          //number of packets received
-		pk_loss_percent int  //package loss in percent (%)
-		mam_line string      //min/avg/max - line
-		avg f32              //avg  (in ms)
-		min f32              //min  (in ms)
-		max f32              //max  (in ms)
-		mdev f32             //mdev (in ms)
-} 
+	pub mut:
+	time_tt int = -1          //in ms
+	pk_send int = -1          //number of packages send
+	pk_recv int = -1          //number of packages received
+	pk_loss_percent int = -1  //package loss in percent%
+	mam_line string = "-1"    //min/max/avg full line
+	avg f32 =  -1             //ms
+	min f32 =  -1             //ms
+	max f32 =  -1             //ms
+	mdev f32 = -1             //ms
+    //vping specific error (NOT comparable with Status-code (exit code) of ping command):
+	is_err int                //if parse() error [vping specific] 1 = yes, 0 = no error detected
+}
 ```
+__!! Parser should only work properly for Linux right now - so for Windows you have to parse the Answer.raw yourself !!__ //todo
 
 ## Further Examples:
 
@@ -139,6 +142,11 @@ fn main() {
 
 ## Good to know:
 When some values of __Conf__ or __Parsed__ are `== -1` there would be a parsing/general problem.  
+__Edit:__ For that case its now Parsed.is_err implemented (Linux only), if nothing got parsed/changed this value is 1. So feel free
+to use 
+```vlang
+if result.parsed.is_err == 1 { println('ping result is not valid for usage - parser cant parse the result (raw)')}
+```
 Since just few values __shouldn't__ end up as an Error or Failure, it's implemented like that. So when using the 
 __Answer__ make sure to proof if the value is `>= 0` to "validate" it. 
 
