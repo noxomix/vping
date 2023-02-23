@@ -1,6 +1,18 @@
 # `vping` for Vlang
 This is a Ping Library for the Vlang Programming-Language (Link: [vlang/v](https://github.com/vlang/v)).
-`vping`  uses the "native" `ping` command of Linux and Windows (!Currently <ins>not</ins> well tested on Windows, and not compatible with MacOS. Tested on Ubuntu 20 based system).
+`vping`  uses the "native" `ping` and `traceroute|tracert` commands of Linux and Windows (!Currently <ins>not</ins> well tested on Windows, and not compatible with MacOS. Tested on Ubuntu 20 based system).
+
+## Changelog
+### __-- Version 0.3 --__
+- Added (early stage) Support for `Traceroute`
+- Traceroute (including the Docs for that) can be found in `/traceroute` as ___"submodule"___
+- Import Traceroute via `import vping.traceroute`
+- Traceroute has its own Structs called `ParsedTraceAnswer` and newly introducing `AbstractTraceAnswer`.
+Unfortunatly `ParsedTraceAnswer` and the TraceParser isn't implemented yet.
+- But it should work :)
+  
+#### Traceroute Docs in this [subfolder](traceroute/traceroute.md). No need to install it separately since its part of `vping`.
+
 
 #### (!) Project in early stage of Development - use it with care. Best Regards _Theo.
 
