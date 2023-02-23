@@ -72,7 +72,7 @@ pub struct TraceConfWin {
 [params]
 pub struct TraceConfLinux {
 	pub mut:
-		main         string = "traceroute"
+		main         string = "traceroute" //better dont change
 		ip 			 string
 		force        int = -1 //itself
 		no_hostname  bool //Do not resolve IP addresses to their domain names
