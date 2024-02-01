@@ -1,6 +1,6 @@
 module vping
 
-[params]
+@[params]
 pub struct Conf {
 	pub mut:
 		ip string
